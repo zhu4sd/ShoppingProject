@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "user")
@@ -12,9 +14,22 @@ public class User {
     @Column(name = "id",nullable = false)
     private long id;
     @Column(name = "username",nullable = false)
+    @NotBlank(message = "username不可以为空！")
     private String username;
     @Column(name = "password",nullable = false)
+    @NotBlank(message = "password不可以为空")
+    @Size(min = 4,max = 6,message = "password长度应为4-6！")
     private String password;
+
+    private String repassword;
+
+    public String getRepassword() {
+        return repassword;
+    }
+
+    public void setRepassword(String repassword) {
+        this.repassword = repassword;
+    }
 
     public User() {
     }
