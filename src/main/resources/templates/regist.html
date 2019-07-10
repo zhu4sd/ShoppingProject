@@ -14,7 +14,7 @@
 <div class="container" style="text-align:center;margin-top:50px;">
     <div class="row col-md-6 col-md-offset-3">
         <div class="panel panel-default">
-            <div class="panel-heading" th:text="${title}">注册页面</div>
+            <div class="panel-heading" >注册页面</div>
             <div class="panel-body">
                 <form id="registerForm" th:action="@{/regist}" th:object="${user}" method="post">
                     <div class="input-group">
@@ -42,8 +42,7 @@
                         <!-- <input id="repassword" type="password" name="repassword" class="formcontrol" placeholder="确认密码"> -->
                         <input id="repassword" type="password" th:field="*{repassword}" class="formcontrol" placeholder="确认密码"  required>
                     </div>
-                    实训邦
-                    www.sxbang.net12 / 16
+
                     <br>
                     <button type="submit" class="btn btn-primary register-btn">注册</button>
                     <button type="reset" class="btn btn-warning">重置</button>
@@ -57,6 +56,7 @@
 <script th:src="@{/js/jquery.validate.min.js}"></script>
 <script th:src="@{/js/additional-methods.min.js}"></script>
 <script th:src="@{/js/mssages_zh.min.js}"></script>
+<script th:src="@{/js/jquery.md5.js}"></script>
 <script>
     jQuery.validator.setDefaults({
         debug:true,
@@ -73,9 +73,6 @@
                 equalTo:"#password"
             }
         }
-    });
-    $().ready(function () {
-
     });
 </script>
 </html>

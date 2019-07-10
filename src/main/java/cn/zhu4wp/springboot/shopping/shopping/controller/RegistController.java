@@ -2,6 +2,7 @@ package cn.zhu4wp.springboot.shopping.shopping.controller;
 
 import cn.zhu4wp.springboot.shopping.shopping.model.User;
 import cn.zhu4wp.springboot.shopping.shopping.service.UserService;
+import cn.zhu4wp.springboot.shopping.shopping.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -21,16 +22,21 @@ public class RegistController {
     public ModelAndView toRegist(){
 
         User user = new User();
-        return new ModelAndView("regist").addObject(user);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("user",user);
+        modelAndView.addObject("title","注册界面");
+        return modelAndView;
     }
     @RequestMapping(value = "/regist",method = RequestMethod.POST)
     public ModelAndView regist(@ModelAttribute(value = "user")@Valid User user, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return new ModelAndView("regist");
         }else{
+            String encryptStr = MD5Util.encrypt(user.getPassword());
+            user.setPassword(encryptStr);
             User newUser = userService.regist(user);
             if (newUser != null){
-                return new ModelAndView("regist");
+                return new ModelAndView("home");
             }else {
                 return new ModelAndView("regist");
             }
