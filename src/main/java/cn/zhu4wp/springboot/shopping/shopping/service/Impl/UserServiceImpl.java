@@ -1,5 +1,6 @@
 package cn.zhu4wp.springboot.shopping.shopping.service.Impl;
 
+import cn.zhu4wp.springboot.shopping.shopping.VO.UserVO;
 import cn.zhu4wp.springboot.shopping.shopping.model.User;
 import cn.zhu4wp.springboot.shopping.shopping.repository.UserRepository;
 import cn.zhu4wp.springboot.shopping.shopping.service.UserService;
@@ -21,7 +22,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(String username) {
-        return userRepository.getOne(username);
+    public UserVO getUser(String username) {
+        UserVO userVO = new UserVO();
+        User user =-
+        return null;
     }
 }

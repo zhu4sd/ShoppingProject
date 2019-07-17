@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "user")
@@ -20,6 +21,16 @@ public class User {
     @NotBlank(message = "password不可以为空")
     @Size(min = 4,max = 6,message = "password长度应为4-6！")
     private String password;
+    @Column(name = "dbflag")
+    private String dbflag;
+
+    public String getDbflag() {
+        return dbflag;
+    }
+
+    public void setDbflag(String dbflag) {
+        this.dbflag = dbflag;
+    }
 
     private String repassword;
 
