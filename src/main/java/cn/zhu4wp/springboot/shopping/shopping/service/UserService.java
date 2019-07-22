@@ -6,4 +6,7 @@ import cn.zhu4wp.springboot.shopping.shopping.model.User;
 public interface UserService {
     public User regist(User user);
     public UserVO getUser(String username);
+    public void saveUserToRedisByToken(UserVO dbUser,String token);
+    public User getUserFromRedisByToken(String token);
+
 }

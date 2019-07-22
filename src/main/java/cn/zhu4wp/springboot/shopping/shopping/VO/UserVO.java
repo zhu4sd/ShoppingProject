@@ -2,11 +2,13 @@ package cn.zhu4wp.springboot.shopping.shopping.VO;
 
 import java.io.Serializable;
 
-public class UserVO {
+public class UserVO implements Serializable{
+
+    private static final long serivalVersionUID = 1L;
 
     private String username;
     private String password;
-    private long id;
+    private Integer id;
     private String dbflag;
     private String repassword;
 
@@ -31,7 +33,7 @@ public class UserVO {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

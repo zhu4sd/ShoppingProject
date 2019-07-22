@@ -1,5 +1,6 @@
 package cn.zhu4wp.springboot.shopping.shopping.redis;
 
+import org.hibernate.type.ObjectType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -23,6 +24,17 @@ public class RedisConfig {
     RedisConnectionFactory redisConnectionFactory;
 
     /**
+     * 实例化 RedisTemplate对象
+     * @return
+     */
+    @Bean
+    public RedisTemplate<String, Object> functionDomainRedisTemplate(){
+        RedisTemplate<String ,Object> redisTemplate = new RedisTemplate<>();
+        initDomainRedisTemplate(redisTemplate,redisConnectionFactory);
+        return redisTemplate;
+    }
+
+    /**
      * 设置数据存入redis的序列化方式
      * @param redisTemplate
      * @param factory
@@ -34,11 +46,7 @@ public class RedisConfig {
         redisTemplate.setValueSerializer(new StringRedisSerializer());
         redisTemplate.setConnectionFactory(factory);
     }
-    public RedisTemplate<String,Object> functionDomainRedisTemplate(){
-        RedisTemplate<String,Object> redisTemplate = new RedisTemplate<>();
-        initDomainRedisTemplate(redisTemplate,redisConnectionFactory);
-        return redisTemplate;
-    }
+
 
     /**
      * 实例化 HashOperations 对象，可以使用Hash类型操作
